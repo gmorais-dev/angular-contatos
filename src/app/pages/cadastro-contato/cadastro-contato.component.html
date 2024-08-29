@@ -1,55 +1,75 @@
-<div class="container">
-    <h2>Cadastrar Contato</h2>
-    <form [formGroup]="contatoForm" (ngSubmit)="onSubmit()">
-      
-      <div class="form-group">
-        <label for="contatoNome">Nome</label>
-        <input type="text" id="contatoNome" class="form-control" formControlName="contatoNome">
-        <div *ngIf="contatoForm.get('contatoNome')?.invalid && contatoForm.get('contatoNome')?.touched" class="text-danger">
-          Nome é obrigatório e deve ter no mínimo 3 caracteres.
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Contato</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./cadastro-contato.component.scss">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 mt-5">
+                    <h2 class="text-center mb-4">Cadastrar Contato</h2>
+                    <form [formGroup]="contatoForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="contatoNome">Nome</label>
+                            <input type="text" id="contatoNome" class="form-control" formControlName="contatoNome">
+                            <div *ngIf="contatoForm.get('contatoNome')?.invalid && contatoForm.get('contatoNome')?.touched" class="text-danger">
+                                Nome é obrigatório e deve ter no mínimo 3 caracteres.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contatoEmail">Email</label>
+                            <input type="email" id="contatoEmail" class="form-control" formControlName="contatoEmail">
+                            <div *ngIf="contatoForm.get('contatoEmail')?.invalid && contatoForm.get('contatoEmail')?.touched" class="text-danger">
+                                Email inválido.
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contatoCelular">Celular</label>
+                            <input type="text" id="contatoCelular" class="form-control" formControlName="contatoCelular">
+                            <div *ngIf="contatoForm.get('contatoCelular')?.invalid && contatoForm.get('contatoCelular')?.touched" class="text-danger">
+                                Celular inválido. Deve conter 11 dígitos.
+                            </div>
+                            <div *ngIf="duplicidadeErro" class="text-danger">
+                                {{ duplicidadeErro }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contatoTelefone">Telefone</label>
+                            <input type="text" id="contatoTelefone" class="form-control" formControlName="contatoTelefone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contatoFavorito">Favorito</label>
+                            <select id="contatoFavorito" class="form-control" formControlName="contatoSnFavorito">
+                                <option value="S">Sim</option>
+                                <option value="N">Não</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contatoAtivo">Ativo</label>
+                            <select id="contatoAtivo" class="form-control" formControlName="contatoSnAtivo">
+                                <option value="S">Sim</option>
+                                <option value="N">Não</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="contatoForm.invalid">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="contatoEmail">Email</label>
-        <input type="email" id="contatoEmail" class="form-control" formControlName="contatoEmail">
-        <div *ngIf="contatoForm.get('contatoEmail')?.invalid && contatoForm.get('contatoEmail')?.touched" class="text-danger">
-          Email inválido.
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="contatoCelular">Celular</label>
-        <input type="text" id="contatoCelular" class="form-control" formControlName="contatoCelular">
-        <div *ngIf="contatoForm.get('contatoCelular')?.invalid && contatoForm.get('contatoCelular')?.touched" class="text-danger">
-          Celular inválido. Deve conter 11 dígitos.
-        </div>
-        <div *ngIf="duplicidadeErro" class="text-danger">
-          {{ duplicidadeErro }}
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="contatoTelefone">Telefone</label>
-        <input type="text" id="contatoTelefone" class="form-control" formControlName="contatoTelefone">
-      </div>
-  
-      <div class="form-group">
-        <label for="contatoSnFavorito">Favorito</label>
-        <select id="contatoSnFavorito" class="form-control" formControlName="contatoSnFavorito">
-          <option value="S">Sim</option>
-          <option value="N">Não</option>
-        </select>
-      </div>
-  
-      <div class="form-group">
-        <label for="contatoSnAtivo">Ativo</label>
-        <select id="contatoSnAtivo" class="form-control" formControlName="contatoSnAtivo">
-          <option value="S">Sim</option>
-          <option value="N">Não</option>
-        </select>
-      </div>
-  
-      <button type="submit" class="btn btn-primary" [disabled]="contatoForm.invalid">Cadastrar</button>
-    </form>
-  </div>
+    </div>
+</body>
+
+</html>
